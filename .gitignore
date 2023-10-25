@@ -62,3 +62,5 @@ cp.out
 conf_immutable_*.json
 conf_mutable_*.json
 *.sync.json
+
+config.json
