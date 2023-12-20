@@ -4,3 +4,5 @@
 3. 填写api key和api secret到config.json文件
 4. 运行main.go文件
 5. 接入公众号
+
+github地址：https://github.com/anjude/little-demo

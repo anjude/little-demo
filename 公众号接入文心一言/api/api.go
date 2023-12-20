@@ -65,6 +65,8 @@ func getReply(req *AutoReplyReq) (*AutoReplyRsp, error) {
 				return resp, nil
 			}
 			resp.Content = lastMsg.Content
+			// 记录用户使用次数到缓存
+
 			return resp, nil
 		}
 		// 只保留最近的10条记录
