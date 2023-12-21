@@ -6,7 +6,7 @@ import (
 )
 
 func Test_client_GetArticleList(t *testing.T) {
-	c := &client{
+	c := &csdnClient{
 		userName:  "wx_douxj",
 		userToken: "token",
 	}
@@ -23,7 +23,7 @@ func Test_client_GetArticleList(t *testing.T) {
 }
 
 func Test_client_SubmitComment(t *testing.T) {
-	c := &client{
+	c := &csdnClient{
 		userName:  "xx",
 		userToken: "xx",
 	}
@@ -37,4 +37,21 @@ func Test_client_SubmitComment(t *testing.T) {
 		return
 	}
 	t.Logf("SubmitComment() got = %v", got)
+}
+
+func Test_csdnClient_GetCommentList(t *testing.T) {
+	c := &csdnClient{
+		userName:  "xxx",
+		userToken: "xxx",
+	}
+	got, err := c.GetCommentList(schema.CommentListReq{
+		CommentId: "134990421",
+		Page:      1,
+		Size:      10,
+	})
+	if err != nil {
+		t.Errorf("GetCommentList() error = %v", err)
+		return
+	}
+	t.Logf("GetCommentList() got = %v", got)
 }

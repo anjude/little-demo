@@ -44,3 +44,96 @@ type CommentResp struct {
 	TraceId string `json:"traceId"`
 	Data    int    `json:"data"`
 }
+
+type CommentListReq struct {
+	CommentId string `json:"commentId"`
+	Page      int    `json:"page"`
+	Size      int    `json:"size"`
+}
+
+type CommentListResp struct {
+	Code    int    `json:"code"`
+	Message string `json:"message"`
+	TraceId string `json:"traceId"`
+	Data    struct {
+		Count      int `json:"count"`
+		PageCount  int `json:"pageCount"`
+		FloorCount int `json:"floorCount"`
+		FoldCount  int `json:"foldCount"`
+		List       []struct {
+			Info struct {
+				CommentId             int           `json:"commentId"`
+				ArticleId             int           `json:"articleId"`
+				ParentId              int           `json:"parentId"`
+				PostTime              string        `json:"postTime"`
+				Content               string        `json:"content"`
+				UserName              string        `json:"userName"`
+				Digg                  int           `json:"digg"`
+				DiggArr               []interface{} `json:"diggArr"`
+				LoginUserDigg         bool          `json:"loginUserDigg"`
+				ParentUserName        string        `json:"parentUserName"`
+				ParentNickName        string        `json:"parentNickName"`
+				Avatar                string        `json:"avatar"`
+				NickName              string        `json:"nickName"`
+				DateFormat            string        `json:"dateFormat"`
+				Years                 int           `json:"years"`
+				Vip                   bool          `json:"vip"`
+				VipIcon               string        `json:"vipIcon"`
+				VipUrl                string        `json:"vipUrl"`
+				CompanyBlog           bool          `json:"companyBlog"`
+				CompanyBlogIcon       string        `json:"companyBlogIcon"`
+				Flag                  bool          `json:"flag"`
+				FlagIcon              string        `json:"flagIcon"`
+				LevelIcon             string        `json:"levelIcon"`
+				CommentFromTypeResult struct {
+					Index int    `json:"index"`
+					Key   string `json:"key"`
+					Title string `json:"title"`
+				} `json:"commentFromTypeResult"`
+				IsTop           bool        `json:"isTop"`
+				IsBlack         bool        `json:"isBlack"`
+				Region          string      `json:"region"`
+				OrderNo         string      `json:"orderNo"`
+				RedEnvelopeInfo interface{} `json:"redEnvelopeInfo"`
+				GptInfo         interface{} `json:"gptInfo"`
+			} `json:"info"`
+			Sub []struct {
+				CommentId             int           `json:"commentId"`
+				ArticleId             int           `json:"articleId"`
+				ParentId              int           `json:"parentId"`
+				PostTime              string        `json:"postTime"`
+				Content               string        `json:"content"`
+				UserName              string        `json:"userName"`
+				Digg                  int           `json:"digg"`
+				DiggArr               []interface{} `json:"diggArr"`
+				LoginUserDigg         bool          `json:"loginUserDigg"`
+				ParentUserName        string        `json:"parentUserName"`
+				ParentNickName        string        `json:"parentNickName"`
+				Avatar                string        `json:"avatar"`
+				NickName              string        `json:"nickName"`
+				DateFormat            string        `json:"dateFormat"`
+				Years                 int           `json:"years"`
+				Vip                   bool          `json:"vip"`
+				VipIcon               string        `json:"vipIcon"`
+				VipUrl                string        `json:"vipUrl"`
+				CompanyBlog           bool          `json:"companyBlog"`
+				CompanyBlogIcon       string        `json:"companyBlogIcon"`
+				Flag                  bool          `json:"flag"`
+				FlagIcon              string        `json:"flagIcon"`
+				LevelIcon             string        `json:"levelIcon"`
+				CommentFromTypeResult struct {
+					Index int    `json:"index"`
+					Key   string `json:"key"`
+					Title string `json:"title"`
+				} `json:"commentFromTypeResult"`
+				IsTop           bool        `json:"isTop"`
+				IsBlack         bool        `json:"isBlack"`
+				Region          string      `json:"region"`
+				OrderNo         string      `json:"orderNo"`
+				RedEnvelopeInfo interface{} `json:"redEnvelopeInfo"`
+				GptInfo         interface{} `json:"gptInfo"`
+			} `json:"sub"`
+			PointCommentId interface{} `json:"pointCommentId"`
+		} `json:"list"`
+	} `json:"data"`
+}
