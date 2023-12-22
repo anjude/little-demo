@@ -55,3 +55,19 @@ func Test_csdnClient_GetCommentList(t *testing.T) {
 	}
 	t.Logf("GetCommentList() got = %v", got)
 }
+
+func Test_csdnClient_DiggComment(t *testing.T) {
+	c := &csdnClient{
+		userName:  "xxx",
+		userToken: "xxx",
+	}
+	got, err := c.DiggComment(schema.DiggCommentReq{
+		CommentId: "30508799",
+		ArticleId: "135147263",
+	})
+	if err != nil {
+		t.Errorf("DiggComment error = %v", err)
+		return
+	}
+	t.Logf("DiggComment got = %v", got)
+}

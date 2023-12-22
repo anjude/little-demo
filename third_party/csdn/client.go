@@ -129,3 +129,41 @@ func (c *csdnClient) GetCommentList(param schema.CommentListReq) (*schema.Commen
 	}
 	return resp, nil
 }
+
+func (c *csdnClient) DiggComment(param schema.DiggCommentReq) (*schema.DiggCommentResp, error) {
+	url := "https://blog.csdn.net/phoenix/web/v1/comment/digg"
+
+	payload := strings.NewReader(fmt.Sprintf("articleId=%s&commentId=%s", param.ArticleId, param.CommentId))
+
+	client := &http.Client{}
+	req, err := http.NewRequest(http.MethodPost, url, payload)
+
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+	req.Header.Add("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
+	req.Header.Add("Cookie", fmt.Sprintf("UserName=%s; UserToken=%s", c.userName, c.userToken))
+	req.Header.Add("Origin", "https://blog.csdn.net")
+	req.Header.Add("Referer", "https://blog.csdn.net/weixin_52908342/article/details/134990421")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+	defer res.Body.Close()
+
+	body, err := io.ReadAll(res.Body)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+	resp := &schema.DiggCommentResp{}
+	err = json.Unmarshal(body, resp)
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
+}

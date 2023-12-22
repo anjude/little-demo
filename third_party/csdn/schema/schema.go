@@ -137,3 +137,14 @@ type CommentListResp struct {
 		} `json:"list"`
 	} `json:"data"`
 }
+
+type DiggCommentReq struct {
+	CommentId string `json:"commentId"`
+	ArticleId string `json:"articleId"`
+}
+type DiggCommentResp struct {
+	Code    int         `json:"code"`
+	Message string      `json:"message"`
+	TraceId string      `json:"traceId"`
+	Data    interface{} `json:"data"`
+}
