@@ -71,3 +71,38 @@ func Test_csdnClient_DiggComment(t *testing.T) {
 	}
 	t.Logf("DiggComment got = %v", got)
 }
+
+func Test_csdnClient_GetMyArticleCommentList(t *testing.T) {
+	c := &csdnClient{
+		userName:  "xxx",
+		userToken: "xxx",
+	}
+	got, err := c.GetMyArticleCommentList(schema.ArticleCommentListReq{
+		Type: "in",
+		Page: 1,
+		Size: 20,
+	})
+	if err != nil {
+		t.Errorf("get comment error = %v", err)
+		return
+	}
+	t.Logf("comment got = %v", got)
+}
+
+func Test_csdnClient_GetUserArticleList(t *testing.T) {
+	c := &csdnClient{
+		userName:  "xxx",
+		userToken: "xxx",
+	}
+	got, err := c.GetUserArticleList(schema.GetUserArticleListReq{
+		BusinessType: "blog",
+		Page:         1,
+		Size:         20,
+		UserName:     "weixin_52908342",
+	})
+	if err != nil {
+		t.Errorf("get error = %v", err)
+		return
+	}
+	t.Logf("got = %v", got)
+}

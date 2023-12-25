@@ -142,9 +142,79 @@ type DiggCommentReq struct {
 	CommentId string `json:"commentId"`
 	ArticleId string `json:"articleId"`
 }
+
 type DiggCommentResp struct {
 	Code    int         `json:"code"`
 	Message string      `json:"message"`
 	TraceId string      `json:"traceId"`
 	Data    interface{} `json:"data"`
+}
+
+type ArticleCommentListReq struct {
+	Type string `json:"type"`
+	Page int    `json:"page"`
+	Size int    `json:"size"`
+}
+
+type ArticleCommentListResp struct {
+	Code    int    `json:"code"`
+	Message string `json:"message"`
+	TraceId string `json:"traceId"`
+	Data    struct {
+		List []struct {
+			CommentId             int    `json:"commentId"`
+			ArticleId             int    `json:"articleId"`
+			BlogId                int    `json:"blogId"`
+			ParentId              int    `json:"parentId"`
+			PostTime              string `json:"postTime"`
+			Content               string `json:"content"`
+			UserName              string `json:"userName"`
+			Status                int    `json:"status"`
+			OpenStatus            int    `json:"openStatus"`
+			Digg                  int    `json:"digg"`
+			Avatar                string `json:"avatar"`
+			Title                 string `json:"title"`
+			CommentAuth           int    `json:"commentAuth"`
+			ArticleUrl            string `json:"articleUrl"`
+			DateFormat            string `json:"dateFormat"`
+			Nickname              string `json:"nickname"`
+			ArticleAuthorNickname string `json:"articleAuthorNickname"`
+		} `json:"list"`
+		Total int `json:"total"`
+		Page  int `json:"page"`
+		Size  int `json:"size"`
+	} `json:"data"`
+}
+
+type GetUserArticleListReq struct {
+	BusinessType string `json:"businessType"`
+	Page         int    `json:"page"`
+	Size         int    `json:"size"`
+	UserName     string `json:"userName"`
+}
+
+type GetUserArticleListResp struct {
+	Code    int    `json:"code"`
+	Message string `json:"message"`
+	TraceId string `json:"traceId"`
+	Data    struct {
+		List []struct {
+			ArticleId    int      `json:"articleId"`
+			Title        string   `json:"title"`
+			Description  string   `json:"description"`
+			Url          string   `json:"url"`
+			Type         int      `json:"type"`
+			Top          bool     `json:"top"`
+			ForcePlan    bool     `json:"forcePlan"`
+			ViewCount    int      `json:"viewCount"`
+			CommentCount int      `json:"commentCount"`
+			EditUrl      string   `json:"editUrl"`
+			PostTime     string   `json:"postTime"`
+			DiggCount    int      `json:"diggCount"`
+			FormatTime   string   `json:"formatTime"`
+			PicList      []string `json:"picList"`
+			CollectCount int      `json:"collectCount"`
+		} `json:"list"`
+		Total int `json:"total"`
+	} `json:"data"`
 }
