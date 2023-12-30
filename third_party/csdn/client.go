@@ -9,27 +9,27 @@ import (
 	"strings"
 )
 
-type csdnClient struct {
+type Client struct {
 	userName  string
 	userToken string
 }
 
-func NewClient(u, t string) *csdnClient {
-	return &csdnClient{
+func NewClient(u, t string) *Client {
+	return &Client{
 		userName:  u,
 		userToken: t,
 	}
 }
 
-func (c *csdnClient) GetUserName() string {
+func (c *Client) GetUserName() string {
 	return c.userName
 }
 
-func (c *csdnClient) GetUserToken() string {
+func (c *Client) GetUserToken() string {
 	return c.userToken
 }
 
-func (c *csdnClient) GetArticleList(param schema.GetHotListReq) (*schema.GetHotListResp, error) {
+func (c *Client) GetArticleList(param schema.GetHotListReq) (*schema.GetHotListResp, error) {
 	url := fmt.Sprintf("https://blog.csdn.net/phoenix/web/blog/hot-rank?page=%d&pageSize=%d&type=%s",
 		param.Page, param.PageSize, param.Type)
 
@@ -61,7 +61,7 @@ func (c *csdnClient) GetArticleList(param schema.GetHotListReq) (*schema.GetHotL
 	return resp, nil
 }
 
-func (c *csdnClient) SubmitComment(param schema.CommentReq) (*schema.CommentResp, error) {
+func (c *Client) SubmitComment(param schema.CommentReq) (*schema.CommentResp, error) {
 	url := "https://blog.csdn.net/phoenix/web/v1/comment/submit"
 
 	payload := strings.NewReader(fmt.Sprintf("commentId=%s&content=%s&articleId=%s", param.CommentId, param.Content, param.ArticleId))
@@ -99,8 +99,8 @@ func (c *csdnClient) SubmitComment(param schema.CommentReq) (*schema.CommentResp
 	return resp, nil
 }
 
-func (c *csdnClient) GetCommentList(param schema.CommentListReq) (*schema.CommentListResp, error) {
-	url := fmt.Sprintf("https://blog.csdn.net/phoenix/web/v1/comment/list/%s?page=%d&size=%d", param.CommentId, param.Page, param.Size)
+func (c *Client) GetCommentList(param schema.CommentListReq) (*schema.CommentListResp, error) {
+	url := fmt.Sprintf("https://blog.csdn.net/phoenix/web/v1/comment/list/%s?page=%d&size=%d", param.ArticleId, param.Page, param.Size)
 
 	cli := &http.Client{}
 	req, err := http.NewRequest(http.MethodPost, url, nil)
@@ -130,7 +130,7 @@ func (c *csdnClient) GetCommentList(param schema.CommentListReq) (*schema.Commen
 	return resp, nil
 }
 
-func (c *csdnClient) DiggComment(param schema.DiggCommentReq) (*schema.DiggCommentResp, error) {
+func (c *Client) DiggComment(param schema.DiggCommentReq) (*schema.DiggCommentResp, error) {
 	url := "https://blog.csdn.net/phoenix/web/v1/comment/digg"
 
 	payload := strings.NewReader(fmt.Sprintf("articleId=%s&commentId=%s", param.ArticleId, param.CommentId))
@@ -168,7 +168,7 @@ func (c *csdnClient) DiggComment(param schema.DiggCommentReq) (*schema.DiggComme
 	return resp, nil
 }
 
-func (c *csdnClient) GetMyArticleCommentList(param schema.ArticleCommentListReq) (*schema.ArticleCommentListResp, error) {
+func (c *Client) GetMyArticleCommentList(param schema.ArticleCommentListReq) (*schema.ArticleCommentListResp, error) {
 	url := fmt.Sprintf("https://bizapi.csdn.net/blog/phoenix/console/v1/comment/list?type=%s&page=%d&size=%d", param.Type, param.Page, param.Size)
 
 	client := &http.Client{}
@@ -208,7 +208,7 @@ func (c *csdnClient) GetMyArticleCommentList(param schema.ArticleCommentListReq)
 	return resp, nil
 }
 
-func (c *csdnClient) GetUserArticleList(param schema.GetUserArticleListReq) (*schema.GetUserArticleListResp, error) {
+func (c *Client) GetUserArticleList(param schema.GetUserArticleListReq) (*schema.GetUserArticleListResp, error) {
 	url := fmt.Sprintf("https://blog.csdn.net/community/home-api/v1/get-business-list?page=%d&size=%d&businessType=%s&username=%s", param.Page, param.Size, param.BusinessType, param.UserName)
 
 	client := &http.Client{}

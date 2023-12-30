@@ -46,7 +46,7 @@ type CommentResp struct {
 }
 
 type CommentListReq struct {
-	CommentId string `json:"commentId"`
+	ArticleId string `json:"articleId"`
 	Page      int    `json:"page"`
 	Size      int    `json:"size"`
 }
