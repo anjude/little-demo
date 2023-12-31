@@ -34,6 +34,28 @@ func Test_Demo(t *testing.T) {
 	}
 }
 ```
+sdk调用
+```azure
+package test
+
+import (
+	"github.com/anjude/bean-sdk-go/beansdk"
+	"github.com/anjude/bean-sdk-go/services/csdn_service"
+	"testing"
+)
+
+func TestSDK(t *testing.T) {
+	// visitor token有限
+	client := beansdk.NewClient("visitor", "")
+	csdnService := csdn_service.NewCsdnService(client, "user name", "user token")
+	resp, err := csdnService.HotArticleComment()
+	if err != nil {
+		t.Errorf("got err: %v", err)
+		return
+	}
+	t.Logf("success: %v", resp)
+}
+```
 ### 3. 效果
 打开csdn https://mp.csdn.net/mp_blog/manage/comment - 我发表的评论，即可看到已发布的评论
 其他接口使用请参考third_party/csdn/client_test.go
