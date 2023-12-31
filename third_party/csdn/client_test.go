@@ -5,6 +5,33 @@ import (
 	"testing"
 )
 
+func Test_Demo(t *testing.T) {
+	c := &Client{
+		userName:  "xx",
+		userToken: "xx",
+	}
+	got, err := c.GetArticleList(schema.GetHotListReq{
+		Page:     0,
+		PageSize: 10,
+		Type:     "",
+	})
+	if err != nil {
+		t.Errorf("GetArticleList() error = %v", err)
+		return
+	}
+	for _, article := range got.Data {
+		_, err := c.SubmitComment(schema.CommentReq{
+			CommentId: "",
+			Content:   "请回复有意义的内容",
+			ArticleId: article.ProductId,
+		})
+		if err != nil {
+			t.Errorf("SubmitComment() error = %v", err)
+			return
+		}
+	}
+}
+
 func Test_client_GetArticleList(t *testing.T) {
 	c := &Client{
 		userName:  "wx_douxj",
