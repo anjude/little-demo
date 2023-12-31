@@ -4,7 +4,7 @@
 ## CSDN 接口使用
 ### 1. 获取CSDN的user name和user token
 打开csdn，打开控制台 - Application - Cookies，找到domain为blog.csdn.net的cookie，复制user_name和user_token的值
-![CSDN Cookie](pkg/img.png)
+![CSDN Cookie](../bean-sdk-go/docs/img.png)
 ### 2. 调用接口
 ```go
 func Test_Demo(t *testing.T) {
