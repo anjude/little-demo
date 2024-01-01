@@ -1,5 +1,5 @@
 # 关注公众号进群交流
-<img src="doc/OfficialAccounts.png" alt="Example Image" height="300px">
+<img src="doc/OfficialAccounts.png" alt="Example Image" height="100px">
 
 ## CSDN 接口使用
 ### 1. 获取CSDN的user name和user token
