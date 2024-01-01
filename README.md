@@ -1,5 +1,6 @@
 # 关注公众号进群交流
-<img src="doc/OfficialAccounts.pn" alt="Example Image" height="300px">
+<img src="doc/OfficialAccounts.png" alt="Example Image" height="300px">
+
 ## CSDN 接口使用
 ### 1. 获取CSDN的user name和user token
 打开csdn，打开控制台 - Application - Cookies，找到domain为blog.csdn.net的cookie，复制user_name和user_token的值
