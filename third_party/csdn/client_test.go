@@ -6,10 +6,7 @@ import (
 )
 
 func Test_Demo(t *testing.T) {
-	c := &Client{
-		userName:  "xx",
-		userToken: "xx",
-	}
+	c := NewClient("", "")
 	got, err := c.GetArticleList(schema.GetHotListReq{
 		Page:     0,
 		PageSize: 10,
@@ -33,10 +30,7 @@ func Test_Demo(t *testing.T) {
 }
 
 func Test_client_GetArticleList(t *testing.T) {
-	c := &Client{
-		userName:  "wx_douxj",
-		userToken: "token",
-	}
+	c := NewClient("", "")
 	got, err := c.GetArticleList(schema.GetHotListReq{
 		Page:     0,
 		PageSize: 10,
@@ -50,10 +44,7 @@ func Test_client_GetArticleList(t *testing.T) {
 }
 
 func Test_client_SubmitComment(t *testing.T) {
-	c := &Client{
-		userName:  "xx",
-		userToken: "xx",
-	}
+	c := NewClient("", "")
 	got, err := c.SubmitComment(schema.CommentReq{
 		CommentId: "",
 		Content:   "test_me",
@@ -67,10 +58,7 @@ func Test_client_SubmitComment(t *testing.T) {
 }
 
 func Test_csdnClient_GetCommentList(t *testing.T) {
-	c := &Client{
-		userName:  "xxx",
-		userToken: "xxx",
-	}
+	c := NewClient("", "")
 	got, err := c.GetCommentList(schema.CommentListReq{
 		ArticleId: "134990421",
 		Page:      1,
@@ -84,10 +72,7 @@ func Test_csdnClient_GetCommentList(t *testing.T) {
 }
 
 func Test_csdnClient_DiggComment(t *testing.T) {
-	c := &Client{
-		userName:  "xxx",
-		userToken: "xxx",
-	}
+	c := NewClient("", "")
 	got, err := c.DiggComment(schema.DiggCommentReq{
 		CommentId: "30508799",
 		ArticleId: "135147263",
@@ -100,10 +85,7 @@ func Test_csdnClient_DiggComment(t *testing.T) {
 }
 
 func Test_csdnClient_GetMyArticleCommentList(t *testing.T) {
-	c := &Client{
-		userName:  "xxx",
-		userToken: "xxx",
-	}
+	c := NewClient("", "")
 	got, err := c.GetMyArticleCommentList(schema.ArticleCommentListReq{
 		Type: "in",
 		Page: 1,
@@ -117,10 +99,7 @@ func Test_csdnClient_GetMyArticleCommentList(t *testing.T) {
 }
 
 func Test_csdnClient_GetUserArticleList(t *testing.T) {
-	c := &Client{
-		userName:  "xxx",
-		userToken: "xxx",
-	}
+	c := NewClient("", "")
 	got, err := c.GetUserArticleList(schema.GetUserArticleListReq{
 		BusinessType: "blog",
 		Page:         1,
